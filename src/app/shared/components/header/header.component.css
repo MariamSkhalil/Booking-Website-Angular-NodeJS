@@ -1,0 +1,22 @@
+.nav-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .nav-link svg {
+    margin-right: 0.5rem; /* Space between icon and text */
+  }
+  
+  button.nav-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
