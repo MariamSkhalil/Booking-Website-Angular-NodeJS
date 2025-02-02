@@ -1,10 +1,17 @@
 const express = require('express');
 const { connectDB } = require('./config/database');
-
+const userRouter= require('./routes/userRouter')
 const { User } = require("./models/user_model");
 
 
 const app = express();
+
+// Routes
+app.use('/user', userRouter);
+
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
 
 //Connect to database
 connectDB();
@@ -46,5 +53,5 @@ const createAdmin = async () => {
   console.log("Admin created:", admin);
 };
 
-createUser();
-createAdmin();
+//createUser();
+//createAdmin();
