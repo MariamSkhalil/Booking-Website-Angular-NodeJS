@@ -2,9 +2,16 @@ const express = require('express');
 const { connectDB } = require('./config/database');
 const userRouter= require('./routes/userRouter')
 const { User } = require("./models/user_model");
-
+const paymentRoutes = require('./routes/paymentRoutes');
+const errorHandler = require('./middleware/errorHandler');
+const corsMiddleware = require('./middleware/corsMiddleware');
 
 const app = express();
+
+// Middleware
+app.use(corsMiddleware);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/user', userRouter);
@@ -12,6 +19,9 @@ app.use('/user', userRouter);
 app.get('/', (req, res) => {
   res.send('Server is running');
 });
+
+// Error handling
+app.use(errorHandler);
 
 //Connect to database
 connectDB();
