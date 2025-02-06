@@ -1,19 +1,18 @@
-const { User } = require('../models/User.model');
+const { User } = require('../models/user_model');
 const jwt = require('jsonwebtoken');
 
 //Sign up user
 async function signUp(req, res) {
   try {
-    const { firstName, lastName, email, phoneNumber, password } = req.body;
+    const { firstName, lastName, email, phone, password } = req.body;
 
     // Validate the email address
     if (!email.includes('@')) {
       return res.status(400).send({ error: 'Invalid email address' });
     }
 
-    // Validate the phone number
-    if (phoneNumber.length !== 11) {
-      return res.status(400).send({ error: 'Phone number must be 11 digits' });
+    if (!firstName || !lastName || !phone || !email || !password) {
+      return res.status(400).json({ error: 'All fields are required' });
     }
 
     // Validate the password
@@ -25,7 +24,7 @@ async function signUp(req, res) {
       firstName,
       lastName,
       email,
-      phoneNumber,
+      phone,
       password,
     });
     await user.save();

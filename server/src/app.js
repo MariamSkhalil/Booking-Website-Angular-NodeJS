@@ -4,27 +4,26 @@ const userRouter= require('./routes/userRouter')
 const { User } = require("./models/user_model");
 const paymentRoutes = require('./routes/paymentRoutes');
 const errorHandler = require('./middleware/errorHandler');
-const corsMiddleware = require('./middleware/corsMiddleware');
 
 const app = express();
 
-// Middleware
-app.use(corsMiddleware);
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 
 // Routes
 app.use('/user', userRouter);
+app.use('/payment', paymentRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server is running');
 });
 
-// Error handling
-app.use(errorHandler);
-
 //Connect to database
 connectDB();
+
+
+// Error handling
+app.use(errorHandler);
 
 // Start server
 const port = process.env.PORT || 8000;
