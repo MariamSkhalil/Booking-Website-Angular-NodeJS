@@ -8,15 +8,15 @@ const router = express.Router();
 router.post('/login', login);
 router.post('/signup', signUp);
 
-/* TO CHECK THE PROTECTED ROUTER AUTHRIZATION WORKS
+// TO CHECK THE PROTECTED ROUTER AUTHRIZATION WORKS
 // Protected user route
 router.get('/profile', auth, (req, res) => {
-  res.send({ message: `Welcome, ${req.user.role} ${req.user.name}!` });
+  res.send({ message: `Welcome, ${req.user.role} ${req.user.id}!` });
 });
 
 // Admin-only route
 router.get('/admin-dashboard', auth, isAdmin, (req, res) => {
   res.send({ message: 'Welcome to the Admin Dashboard!' });
 });
-*/
+
 module.exports = router;

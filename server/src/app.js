@@ -3,7 +3,6 @@ const { connectDB } = require('./config/database');
 const userRouter= require('./routes/userRouter')
 const { User } = require("./models/user_model");
 const paymentRoutes = require('./routes/paymentRoutes');
-const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -22,8 +21,6 @@ app.get('/', (req, res) => {
 connectDB();
 
 
-// Error handling
-app.use(errorHandler);
 
 // Start server
 const port = process.env.PORT || 8000;

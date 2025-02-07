@@ -47,7 +47,7 @@ async function login(req, res) {
     if (!isPasswordMatch) {
       return res.status(400).send({ error: 'Invalid email or password' });
     }
-    const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET);
+    const token = jwt.sign({ _id: user._id, role: user.role, name: user.firstName }, process.env.JWT_SECRET);
     res.send({ user: { _id: user._id, email: user.email, role: user.role },
          token }); //The frontend will know the user's role to distinguish between Admin and User
   } catch (error) {
