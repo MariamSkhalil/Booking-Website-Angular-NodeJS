@@ -3,6 +3,7 @@ const { connectDB } = require('./config/database');
 const userRouter= require('./routes/userRouter')
 const { User } = require("./models/user_model");
 const paymentRoutes = require('./routes/paymentRoutes');
+const { Hotel, createHotel } = require("./models/hotel_model");
 
 const app = express();
 
@@ -59,5 +60,7 @@ const createAdmin = async () => {
   console.log("Admin created:", admin);
 };
 
+
+//createHotel();
 //createUser();
 //createAdmin();
