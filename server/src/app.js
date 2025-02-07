@@ -3,7 +3,7 @@ const { connectDB } = require('./config/database');
 const userRouter= require('./routes/userRouter')
 const { User } = require("./models/user_model");
 const paymentRoutes = require('./routes/paymentRoutes');
-const { Hotel, createHotel } = require("./models/hotel_model");
+const { Hotel } = require("./models/hotel_model");
 
 const app = express();
 

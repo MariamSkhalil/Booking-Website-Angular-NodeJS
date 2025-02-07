@@ -14,6 +14,7 @@ const HotelSchema = new mongoose.Schema({
 
 const Hotel = mongoose.model('Hotel', HotelSchema);
 
+/*
 const createHotel = async () => {
   try {
     const sampleHotel = new Hotel({
@@ -29,6 +30,6 @@ const createHotel = async () => {
     console.error('Error creating hotel:', error);
   }
 };
-
-module.exports = { Hotel, createHotel };
+*/
+module.exports = { Hotel };
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const Hotel = require("../models/hotel_model")
+const {Hotel} = require("../models/hotel_model")
 
 router.post('/checkout', async (req, res) => {
   try {
@@ -31,18 +31,15 @@ router.post('/checkout', async (req, res) => {
         {
           price_data: {
             currency: 'usd',
-            product_data: {
-              name: `${hotelName} - ${roomName}`,
-              description
-            },
+            product_data: { name: `${hotelName} - ${roomName}`, description },
             unit_amount: Math.round(amount * 100), // Convert to cents
           },
           quantity: 1,
         },
       ],
       mode: 'payment',
-      success_url: 'http://example.com/success',  // Placeholder success URL
-      cancel_url: 'http://example.com/cancel',   // Placeholder cancel URL
+      success_url: 'http://example.com/success',
+      cancel_url: 'http://example.com/cancel',
     });
     room.isAvailable = false; // Mark room as unavailable after booking
     await hotel.save();
